@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="EduHome" id="Project-1f05" database="MySql" >
+	<schema name="eduhome" >
+		<table name="_comments" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="comment" type="VARCHAR" length="200" jt="12" />
+			<index name="pk_tbl" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="assesments" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="assesment" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_assesments" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="blogs" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="wrıter" type="VARCHAR" length="50" jt="12" />
+			<column name="date" type="DATE" jt="91" />
+			<column name="comment_count" type="INT" jt="4" />
+			<column name="descrıptıon" type="VARCHAR" length="200" jt="12" />
+			<column name="ımage" type="VARCHAR" length="200" jt="12" />
+			<column name="tıtle" type="VARCHAR" length="100" jt="12" />
+			<column name="comments_ıd" type="INT" length="200" jt="4" />
+			<index name="pk_blogs" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_blogs__comments" to_schema="eduhome" to_table="_comments" >
+				<fk_column name="comments_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="categorıes" prior="cate" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="category_name" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_categorıes" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="comments" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<index name="pk_comments" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+		</table>
+		<table name="contact_ınformatıon" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="emaıl_adress" type="VARCHAR" length="100" jt="12" />
+			<column name="number" type="VARCHAR" length="50" jt="12" />
+			<column name="skype" type="VARCHAR" length="100" jt="12" />
+			<column name="socıal_medıa_ıd" type="INT" jt="4" />
+			<index name="pk_contact_ınformatıon" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_contact_ınformatıon_teachers" to_schema="eduhome" to_table="teachers" >
+				<fk_column name="ıd" pk="contact_ıd" />
+			</fk>
+			<fk name="fk_contact_ınformatıon" to_schema="eduhome" to_table="socıal_medıas" >
+				<fk_column name="socıal_medıa_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="contacts" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="locatıon" type="VARCHAR" length="200" jt="12" />
+			<column name="phone_number" type="VARCHAR" length="100" jt="12" />
+			<column name="websıte_address" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_contacts" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="contacts_" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="websıte_address" type="VARCHAR" length="100" jt="12" />
+			<column name="locatıon" type="VARCHAR" length="200" jt="12" />
+			<column name="phone_number" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_contacts_0" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="courses" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="name" type="VARCHAR" length="100" jt="12" />
+			<column name="description" type="VARCHAR" length="200" jt="12" />
+			<column name="ımage" type="VARCHAR" length="100" jt="12" />
+			<column name="start_date" type="DATE" jt="91" />
+			<column name="duratıon" type="INT" jt="4" />
+			<column name="class_duratıon" type="INT" jt="4" />
+			<column name="students_count" type="INT" jt="4" />
+			<column name="course_fee" type="INT" jt="4" />
+			<column name="category_ıd" type="INT" jt="4" />
+			<column name="skıll_levels_ıd" type="INT" jt="4" />
+			<column name="languages_ıd" type="INT" jt="4" />
+			<index name="pk_courses" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_courses_categorıes" to_schema="eduhome" to_table="categorıes" >
+				<fk_column name="category_ıd" pk="ıd" />
+			</fk>
+			<fk name="fk_courses_skill_levels" to_schema="eduhome" to_table="skill_levels" >
+				<fk_column name="skıll_levels_ıd" pk="id" />
+			</fk>
+			<fk name="fk_courses_languages" to_schema="eduhome" to_table="languages" >
+				<fk_column name="languages_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="courses_and_skılls" prior="courses_and_" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<index name="pk_courses_and_skılls" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+		</table>
+		<table name="courses_assesments" prior="courses_" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="courses_ıd" type="INT" jt="4" />
+			<column name="assesments_ıd" prior="languages_ıd" type="INT" jt="4" />
+			<index name="pk_courses_assesments" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_courses_assesments_courses" to_schema="eduhome" to_table="courses" >
+				<fk_column name="courses_ıd" pk="ıd" />
+			</fk>
+			<fk name="2" to_schema="eduhome" to_table="assesments" >
+				<fk_column name="assesments_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="events" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="name" type="VARCHAR" length="100" jt="12" />
+			<column name="descrıptıon" type="VARCHAR" length="200" jt="12" />
+			<column name="start_date" type="DATETIME" jt="93" />
+			<column name="fınısh_date" type="DATETIME" jt="93" />
+			<column name="venues_ıd" type="INT" jt="4" />
+			<column name="ımage" type="VARCHAR" length="200" jt="12" />
+			<index name="pk_events" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_events_venues" to_schema="eduhome" to_table="venues" >
+				<fk_column name="venues_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="events_and_speakers" prior="events_" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="event_ıd" type="INT" jt="4" />
+			<column name="speaker_ıd" type="INT" jt="4" />
+			<index name="pk_events_and_speakers" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_events_and_speakers_events" to_schema="eduhome" to_table="events" >
+				<fk_column name="event_ıd" pk="ıd" />
+			</fk>
+			<fk name="fk_events_and_speakers2" to_schema="eduhome" to_table="speakers" >
+				<fk_column name="speaker_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="languages" prior="language" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="language" type="VARCHAR" length="50" jt="12" />
+			<index name="pk_languages" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="skill_levels" prior="tbl" >
+			<column name="id" type="INT" jt="4" mandatory="y" />
+			<column name="level" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_skill_levels" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="skılls" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="skıll" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_skılls" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="socıal_medıas" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="facebook" type="VARCHAR" length="100" jt="12" />
+			<column name="pınterest" type="VARCHAR" length="100" jt="12" />
+			<column name="twıtter" type="VARCHAR" length="100" jt="12" />
+			<column name="vımeo" type="VARCHAR" length="100" jt="12" />
+			<column name="ıcon" type="VARCHAR" length="100" jt="12" />
+			<column name="lınk" type="VARCHAR" length="200" jt="12" />
+			<index name="pk_socıal_medıas" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="speakers" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="name" type="VARCHAR" length="100" jt="12" />
+			<column name="posıtıon" type="VARCHAR" length="100" jt="12" />
+			<index name="pk_speakers" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="teachers" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="name" type="VARCHAR" length="100" jt="12" />
+			<column name="descrıptıon" type="VARCHAR" length="200" jt="12" />
+			<column name="degree" type="VARCHAR" length="100" jt="12" />
+			<column name="experıence" type="VARCHAR" length="50" jt="12" />
+			<column name="hobby" type="VARCHAR" length="200" jt="12" />
+			<column name="faculty" type="VARCHAR" length="100" jt="12" />
+			<column name="posıtıon" type="VARCHAR" length="100" jt="12" />
+			<column name="contact_ıd" type="INT" jt="4" />
+			<column name="ımage" type="VARCHAR" length="200" jt="12" />
+			<index name="pk_teachers" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<index name="unq_teachers_contact_ıd" unique="UNIQUE_KEY" >
+				<column name="contact_ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="teachers_skılls" prior="teachers_skıll" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="teacher_ıd" type="INT" jt="4" />
+			<column name="skılls_ıd" type="INT" length="100" jt="4" />
+			<column name="skıll_percent" type="INT" length="100" jt="4" />
+			<index name="pk_teachers_skılls" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<fk name="fk_teachers_skılls_skılls" to_schema="eduhome" to_table="skılls" >
+				<fk_column name="skılls_ıd" pk="ıd" />
+			</fk>
+			<fk name="fk_teachers_skılls_teachers" to_schema="eduhome" to_table="teachers" >
+				<fk_column name="teacher_ıd" pk="ıd" />
+			</fk>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+		<table name="venues" prior="tbl" >
+			<column name="ıd" type="INT" jt="4" mandatory="y" />
+			<column name="locatıon" type="VARCHAR" length="200" jt="12" />
+			<index name="pk_venues" unique="PRIMARY_KEY" >
+				<column name="ıd" />
+			</index>
+			<options><![CDATA[engine=InnoDB]]></options>
+		</table>
+	</schema>
+	<connector name="MyDb" database="MySql" host="localhost" port="3306" user="root" useSystemProxy="false" />
+	<layout name="Default Layout" id="Layout-f71" joined_routing="y" show_column_type="y" show_relation="columns" >
+		<entity schema="eduhome" name="_comments" color="ECEEC1" x="1168" y="672" />
+		<entity schema="eduhome" name="assesments" color="C1D8EE" x="608" y="64" />
+		<entity schema="eduhome" name="blogs" color="ECEEC1" x="896" y="640" />
+		<entity schema="eduhome" name="categorıes" color="C1D8EE" x="576" y="352" />
+		<entity schema="eduhome" name="contact_ınformatıon" color="EEC1D8" x="1264" y="224" />
+		<entity schema="eduhome" name="contacts" color="C1D8EE" x="960" y="448" />
+		<entity schema="eduhome" name="contacts_" color="D3C1EE" x="624" y="688" />
+		<entity schema="eduhome" name="courses" color="C1D8EE" x="304" y="112" />
+		<entity schema="eduhome" name="courses_assesments" color="C1D8EE" x="624" y="192" />
+		<entity schema="eduhome" name="events" color="C1EECB" x="128" y="512" />
+		<entity schema="eduhome" name="events_and_speakers" color="C1EECB" x="128" y="704" />
+		<entity schema="eduhome" name="languages" color="C1D8EE" x="48" y="320" />
+		<entity schema="eduhome" name="skill_levels" color="C1D8EE" x="48" y="96" />
+		<entity schema="eduhome" name="skılls" color="EEC1D8" x="1424" y="80" />
+		<entity schema="eduhome" name="socıal_medıas" color="EEC1D8" x="1296" y="400" />
+		<entity schema="eduhome" name="speakers" color="C1EECB" x="352" y="672" />
+		<entity schema="eduhome" name="teachers" color="EEC1CE" x="944" y="64" />
+		<entity schema="eduhome" name="teachers_skılls" color="EEC1D8" x="1200" y="48" />
+		<entity schema="eduhome" name="venues" color="C1EECB" x="464" y="544" />
+	</layout>
+</project>
